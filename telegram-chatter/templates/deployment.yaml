@@ -1,0 +1,30 @@
+﻿apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: telegram-chatter 
+  labels:
+    app: telegram-chatter
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: telegram-chatter
+  template:
+    metadata:
+      name: telegram-chatter
+      labels:
+        app: telegram-chatter
+    spec:
+      containers:
+        - name: telegram-chatter
+          image: azwerblacr1.azurecr.io/telegram-chatter:1.0.3
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: TELEGRAM_ACCESS_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  key: TELEGRAM_ACCESS_TOKEN
+                  name: telegram-access-token
+      restartPolicy: Always
+      imagePullSecrets:
+        - name: regcred
