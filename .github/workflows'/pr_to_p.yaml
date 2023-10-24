@@ -1,0 +1,32 @@
+﻿name: Update Production App Version
+
+on:
+  push:
+    paths:
+      - 'telegram-chatter/development/app-version.yaml'
+
+jobs:
+  update-production-version:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+
+      - name: Create Pull Request
+        id: pr
+        run: |
+          
+          target_branch="main"
+          
+          git checkout -b update-production-version
+          
+          cp development/app-version.yaml production/app-version.yaml
+          
+          git add production/app-version.yaml
+          git commit -m "Update production app version"
+          git push origin update-production-version
+          
+          hub pull-request -b $target_branch -h update-production-version -m "Update production app version"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
