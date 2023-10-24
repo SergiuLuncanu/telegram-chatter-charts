@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: telegram-chatter
-          image: azwerblacr1.azurecr.io/telegram-chatter:1.0.3
+          image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
           imagePullPolicy: IfNotPresent
           env:
             - name: TELEGRAM_ACCESS_TOKEN
