@@ -24,6 +24,10 @@ jobs:
           cp telegram-chatter/development/app-version.yaml telegram-chatter/production/app-version.yaml
           
           git add telegram-chatter/production/app-version.yaml
+          
+          git config --global user.email "luncanusergiu@gmail.com"
+          git config --global user.name "SergiuLuncanu"
+         
           git commit -m "Update production app version"
           git push origin update-production-version
           
