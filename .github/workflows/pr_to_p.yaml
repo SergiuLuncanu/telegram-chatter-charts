@@ -12,7 +12,17 @@ jobs:
     steps:
       - name: Check out code
         uses: actions/checkout@v2
-
+      
+      - name: Install hub
+        run: |
+          HUB_VERSION=2.14.2  # Adjust the version as needed
+          HUB_OS=linux  # Adjust for other OS if needed
+          HUB_ARCH=amd64  # Adjust for other architectures if needed
+          
+          curl -sSL "https://github.com/github/hub/releases/download/v${HUB_VERSION}/hub-${HUB_OS}-${HUB_ARCH}" -o /tmp/hub
+          chmod +x /tmp/hub
+          sudo mv /tmp/hub /usr/local/bin/hub
+    
       - name: Create Pull Request
         id: pr
         run: |
