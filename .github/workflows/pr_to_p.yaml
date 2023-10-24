@@ -21,9 +21,9 @@ jobs:
           
           git checkout -b update-production-version
           
-          cp development/app-version.yaml production/app-version.yaml
+          cp telegram-chatter/development/app-version.yaml telegram-chatter/production/app-version.yaml
           
-          git add production/app-version.yaml
+          git add telegram-chatter/production/app-version.yaml
           git commit -m "Update production app version"
           git push origin update-production-version
           
